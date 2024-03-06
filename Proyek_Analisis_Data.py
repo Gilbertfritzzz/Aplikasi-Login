@@ -35,41 +35,6 @@ day_df.head()
 hour_df = pd.read_csv('/hour.csv')
 hour_df.head()
 
-"""### Assessing Data
-
-Memeriksa tipe data pada tiap kolom yang terdapat pada bike_df
-"""
-
-day_df.info()
-
-hour_df.info()
-
-"""semua tipe data sudah sesuai
-
-Assessing bike_df data
-"""
-
-day_df.isna().sum()
-
-hour_df.isna().sum()
-
-"""
-Berdasarkan hasil diatas, tidak ada masalah pada tipe data tiap kolom pada day_df dan hour_df"""
-
-print("Jumlah duplikasi: ", day_df.duplicated().sum())
-
-print("Jumlah duplikasi: ", hour_df.duplicated().sum())
-
-"""### Cleaning Data
-
-Semua tipe data sesuai dan tidak ada masalah
-
-## Exploratory Data Analysis (EDA)
-
-### Explore ...
-
-Merge data
-"""
 
 bike_df = hour_df.merge(day_df, on='dteday', how='inner', suffixes=('_hour', '_day'))
 bike_df.head()
@@ -80,10 +45,6 @@ bike_df.groupby('holiday_day')['cnt_day'].mean().reset_index().sort_values("cnt_
 
 bike_df.registered_hour.sum()
 
-"""## Visualization & Explanatory Analysis
-
-### Pertanyaan 1:
-"""
 
 rent_hr = bike_df.groupby('hr')['cnt_hour'].mean()
 
@@ -95,10 +56,6 @@ plt.ylabel('Rata - Rata Penyewaan')
 
 plt.show()
 
-"""Rata - rata penyewaan sepeda paling banyak terjadi pada jam 5pm-6pm dan paling sedikit jam 4am.
-
-### Pertanyaan 2:
-"""
 
 avg_holiday = bike_df.groupby('holiday_day')['cnt_day'].mean().reset_index().sort_values("cnt_day")
 
@@ -111,27 +68,3 @@ plt.ylabel('Rata-rata Penyewaan')
 plt.xticks([0, 1], ['Tidak Libur', 'Libur'])
 
 plt.show()
-
-"""Rata-rata penyewaan sepeda terjadi saat hari tidak libur
-
-## Conclusion
-
-- Conclution pertanyaan 1 :
-
-Rata - rata penyewaan sepeda paling banyak terjadi saat sore hari yaitu pada jam 5pm - 6 pm.
-
-pada pagi dan sore adalah waktu dimana kebutuhan mobilitas pergi dan pulang kerja atau sekolah sangat diperlukan. Penggunaan sepeda menjadi opsi populer sebagai sarana transportasi ke tempat kerja atau sekolah pada pagi hari, dan sekaligus sebagai pilihan yang diminati saat orang-orang pulang pada sore hari.
-
-Aktivitas fisik seperti bersepeda di pagi hari dan aktivitas rekreasi setelah jam kerja pada jam 6pm menunjukkan bahwa sepeda menjadi salah satu alternatif yang digunakan untuk meningkatkan kebugaran dan kesehatan.
-
-Kondisi cuaca yang bersahabat pada pagi dan sore hari juga menjadi faktor motivasi tambahan bagi pengguna untuk melakukan aktivitas bersepeda di luar ruangan.
-
-
-- Conclution pertanyaan 2 :
-
-Rata - rata penyewaan terjadi saat hari tidak libur.
-
-Disebabkan oleh tingginya aktivitas transportasi pada hari-hari kerja, saat orang pergi atau pulang dari pekerjaan. Peningkatan penyewaan pada hari-hari kerja kemungkinan menunjukan kebutuhan orang untuk menjalani aktivitas sehari-hari, seperti bekerja, bersekolah, atau berbelanja.
-
-Penggunaan sepeda menjadi pilihan yang populer untuk perjalanan singkat, terutama pada hari-hari di mana orang memiliki rutinitas harian. Terdapat kemungkinan bahwa ada kelompok pengguna tertentu, seperti pekerja atau pelajar, yang secara khusus menggunakan layanan penyewaan sepeda pada hari-hari kerja.
-"""
