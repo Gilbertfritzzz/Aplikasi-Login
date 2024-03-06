@@ -2,7 +2,12 @@ import streamlit as st
 
 st.write(
     """
-    # My first app
-    Hello, para calon praktisi data masa depan!
+    # CAFATIFA
+    Yogo pakwe
+    erik bancax arbais
+    zico burhan
+    eceng
+    giru
+    jimbol
     """
 )
