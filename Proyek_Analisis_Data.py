@@ -10,17 +10,6 @@ day_df.head()
 hour_df = pd.read_csv('/hour.csv')
 hour_df.head()
 
-
-bike_df = hour_df.merge(day_df, on='dteday', how='inner', suffixes=('_hour', '_day'))
-bike_df.head()
-
-bike_df.groupby('hr')['cnt_hour'].mean().reset_index()
-
-bike_df.groupby('holiday_day')['cnt_day'].mean().reset_index().sort_values("cnt_day")
-
-bike_df.registered_hour.sum()
-
-
 rent_hr = bike_df.groupby('hr')['cnt_hour'].mean()
 
 plt.bar(rent_hr.index, rent_hr.values)
