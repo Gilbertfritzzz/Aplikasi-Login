@@ -13,20 +13,25 @@ bike_df = hour_df.merge(day_df, on='dteday', how='inner', suffixes=('_hour', '_d
 bike_df.head()
 
 # Plot 1: Hourly Rental
-rent_hr = hour_df.groupby('hr')['cnt_hour'].mean()
+rent_hr = bike_df.groupby('hr')['cnt_hour'].mean()
 
-st.bar_chart(rent_hr)
+plt.bar(rent_hr.index, rent_hr.values)
 
-st.title('Rata - Rata Penyewaan Sepeda per Jam')
+plt.title('Rata - Rata Penyewaan Sepeda per Jam')
+plt.xlabel('Jam')
+plt.ylabel('Rata - Rata Penyewaan')
+
+plt.show()
 
 # Plot 2: Daily Rental on Holidays
-avg_holiday = day_df.groupby('holiday_day')['cnt_day'].mean().reset_index().sort_values("cnt_day")
+avg_holiday = bike_df.groupby('holiday_day')['cnt_day'].mean().reset_index().sort_values("cnt_day")
 
 plt.figure(figsize=(8, 5))
 sns.barplot(x='holiday_day', y='cnt_day', data=avg_holiday, palette='Set1')
 
-st.title('Rata-rata Penyewaan Sepeda pada Hari Libur')
-st.bar_chart(avg_holiday.set_index('holiday_day'))
+plt.title('Rata-rata Penyewaan Sepeda pada Hari Libur')
+plt.xlabel('Hari Libur')
+plt.ylabel('Rata-rata Penyewaan')
+plt.xticks([0, 1], ['Tidak Libur', 'Libur'])
 
-# Display the Streamlit app
-st.show()
+plt.show()
