@@ -8,6 +8,10 @@ import seaborn as sns
 day_df = pd.read_csv('day.csv')
 hour_df = pd.read_csv('hour.csv')
 
+#merge
+bike_df = hour_df.merge(day_df, on='dteday', how='inner', suffixes=('_hour', '_day'))
+bike_df.head()
+
 # Plot 1: Hourly Rental
 rent_hr = hour_df.groupby('hr')['cnt_hour'].mean()
 
