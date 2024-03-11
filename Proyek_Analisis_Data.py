@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load data
-day_df = pd.read_csv('day.csv')
-hour_df = pd.read_csv('hour.csv')
+day_df = pd.read_csv('\day.csv')
+hour_df = pd.read_csv('\hour.csv')
 
 # merge data
 bike_df = hour_df.merge(day_df, on='dteday', how='inner', suffixes=('_hour', '_day'))
