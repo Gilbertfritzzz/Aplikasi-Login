@@ -11,13 +11,12 @@ hour_df = pd.read_csv('/hour.csv')
 # merge data
 bike_df = hour_df.merge(day_df, on='dteday', how='inner', suffixes=('_hour', '_day'))
 
-#Visualization
+# Visualization
 st.title('Bike Sharing Exploratory Data Analysis :bike:')
 col1, col2 = st.columns(2)
 
-
 with col1:
-    rent_hr = (bike_df.groupby('hr')['cnt_hour'].mean())
+    rent_hr = bike_df.groupby('hr')['cnt_hour'].mean()
     fig_rent, ax_rent = plt.subplots()
     ax_rent.bar(rent_hr.index, rent_hr.values)
     plt.xlabel('Hour')
