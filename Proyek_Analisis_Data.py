@@ -5,32 +5,32 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load data
-day_df = pd.read_csv('/day.csv')
-hour_df = pd.read_csv('/hour.csv')
+day_df = pd.read_csv('C:\Project\day.csv')
+hour_df = pd.read_csv('C:\Project\hour.csv')
 
-# merge
+# merge data
 bike_df = hour_df.merge(day_df, on='dteday', how='inner', suffixes=('_hour', '_day'))
 
-# Plot 1: Hourly Rental
-rent_hr = bike_df.groupby('hr')['cnt_hour'].mean()
+#Visualization
+st.title('Bike Sharing Exploratory Data Analysis :bike:')
+col1, col2 = st.columns(2)
 
-# Streamlit code for Plot 1
-st.bar_chart(rent_hr)
 
-st.title('Rata - Rata Penyewaan Sepeda per Jam')
-st.xlabel('Jam')
-st.ylabel('Rata - Rata Penyewaan')
+with col1:
+    rent_hr = (bike_df.groupby('hr')['cnt_hour'].mean())
+    fig_rent, ax_rent = plt.subplots()
+    ax_rent.bar(rent_hr.index, rent_hr.values)
+    plt.xlabel('Hour')
+    plt.ylabel('Bike Sharing Average')
+    st.subheader('Bike Sharing Average Per Hour')
+    st.pyplot(fig_rent)
 
-# Plot 2: Daily Rental on Holidays
-avg_holiday = bike_df.groupby('holiday_day')['cnt_day'].mean().reset_index().sort_values("cnt_day")
-
-# Streamlit code for Plot 2
-fig, ax = plt.subplots(figsize=(8, 5))
-sns.barplot(x='holiday_day', y='cnt_day', data=avg_holiday, palette='Set1', ax=ax)
-
-st.pyplot(fig)
-
-st.title('Rata-rata Penyewaan Sepeda pada Hari Libur')
-st.xlabel('Hari Libur')
-st.ylabel('Rata-rata Penyewaan')
-st.xticks([0, 1], ['Tidak Libur', 'Libur'])
+with col2:
+    avg_holiday = bike_df.groupby('holiday_day')['cnt_day'].mean().reset_index().sort_values("cnt_day")
+    fig_hld, ax = plt.subplots(figsize=(8, 6))
+    sns.barplot(x='holiday_day', y='cnt_day', data=avg_holiday, palette='Set1', ax=ax)
+    plt.xlabel('Day')
+    plt.ylabel('Bike Sharing Average')
+    plt.xticks([0, 1], ['Day', 'Holiday'])
+    st.subheader('Bike Sharing in holiday')
+    st.pyplot(fig_hld)
