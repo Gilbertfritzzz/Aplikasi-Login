@@ -8,9 +8,6 @@ import seaborn as sns
 day_df = pd.read_csv('/day.csv')
 hour_df = pd.read_csv('/hour.csv')
 
-# merge data
-bike_df = hour_df.merge(day_df, on='dteday', how='inner', suffixes=('_hour', '_day'))
-
 # Visualization
 st.title('Bike Sharing Exploratory Data Analysis :bike:')
 col1, col2 = st.columns(2)
