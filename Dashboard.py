@@ -13,8 +13,8 @@ def create_hourly_df_summary(df):
     return hourly_df_summary
 
 # Load data
-hour_df = pd.read_csv('C:\Project\submission\dashboard\hour.csv')
-day_df = pd.read_csv('C:\Project\submission\dashboard\day.csv')
+hour_df = pd.read_csv('hour.csv')
+day_df = pd.read_csv('day.csv')
 
 day_df['dteday'] = pd.to_datetime(day_df['dteday'])
 hour_df['dteday'] = pd.to_datetime(hour_df['dteday'])
