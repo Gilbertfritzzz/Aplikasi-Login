@@ -26,12 +26,11 @@ min_date_bike = bike_df["dteday"].min()
 max_date_bike = bike_df["dteday"].max()
 
 with st.sidebar:
-    # Menambahkan logo perusahaan
     st.image("https://github.com/dicodingacademy/assets/raw/main/logo.png")
     
-    # Mengambil rentang data untuk bike_df
+    # Mengambil rentang waktu untuk bike_df
     start_date_bike, end_date_bike = st.date_input(
-        label='Rentang Data (bike_df)',
+        label='Rentang Waktu',
         min_value=pd.Timestamp(min_date_bike),
         max_value=pd.Timestamp(max_date_bike),
         value=(pd.Timestamp(min_date_bike), pd.Timestamp(max_date_bike))
