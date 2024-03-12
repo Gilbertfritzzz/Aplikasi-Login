@@ -36,10 +36,6 @@ with st.sidebar:
         value=(pd.Timestamp(min_date_bike), pd.Timestamp(max_date_bike))
     )
 
-# Convert tuple values to Timestamp
-start_date_bike = start_date_bike
-end_date_bike = end_date_bike
-
 # Filter data untuk bike_df
 filtered_bike_df = bike_df[
     (bike_df["dteday"] >= pd.Timestamp(start_date_bike)) &
