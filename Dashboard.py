@@ -74,9 +74,9 @@ with col2:
     st.write("Grafik di atas membandingkan rata-rata peminjaman sepeda antara hari biasa dan hari libur.")
 
 # Data Summary
-st.header('Data Summary')
 
 if show_summary:
+    st.header('Data Summary')
     st.subheader(f'Daily Summary {start_date_bike} - {end_date_bike}')
     
     # Calculate average bike rentals per day
